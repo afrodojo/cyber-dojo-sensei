@@ -9,7 +9,6 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { processArticleSubmission } from "@/functions/processArticleSubmission";
 import ArticleUploader from "@/components/articles/ArticleUploader";
 import ArticleReviewCard from "@/components/articles/ArticleReviewCard";
 import AgentArticleChat from "@/components/articles/AgentArticleChat";
