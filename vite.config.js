@@ -7,6 +7,25 @@ function mockBase44BackendPlugin() {
 
   return {
     name: 'mock-base44-backend',
+    enforce: 'pre',
+    transform(code, id) {
+      // Intercept source files and rewrite named imports from Base44 paths into default imports
+      const hasBase44Import = base44Folders.some(folder => id.includes(`/src/${folder}/`));
+      
+      // Match import statements referencing base44 folders and convert them to default proxy imports
+      if (code.includes('/functions/') || code.includes('/entities/') || code.includes('/integrations/') || code.includes('/api/')) {
+        const transformedCode = code.replace(
+          /import\s+\{([^}]+)\}\s+from\s+['"]([^'"]*(?:functions|entities|integrations|api)[^'"]*)['"]/g,
+          (match, imports, source) => {
+            const vars = imports.split(',').map(i => i.trim().split(/\s+as\s+/)[0]);
+            const assignments = vars.map(v => `const ${v} = mockProxy;`).join(' ');
+            return `import mockProxy from '${source}'; ${assignments}`;
+          }
+        );
+        return { code: transformedCode, map: null };
+      }
+      return null;
+    },
     resolveId(source) {
       const isBase44Import = base44Folders.some(folder => 
         source.includes(`/${folder}/`) || 
@@ -30,30 +49,8 @@ function mockBase44BackendPlugin() {
             }
           });
 
-          // Default export
           export default dummyEntity;
-
-          // Functions
-          export const processArticleSubmission = mockFn;
-          export const ensureMasterAdmin = mockFn;
-          export const getGitHubCommits = mockFn;
-          export const submitTestimonial = mockFn;
-          export const subscribeNewsletter = mockFn;
-          
-          // Entities & Modules
-          export const Testimonial = dummyEntity;
-          export const BlogPost = dummyEntity;
-          export const ArticleSubmission = dummyEntity;
-          export const SocialPost = dummyEntity;
-          export const Core = dummyEntity;
-          export const User = dummyEntity;
-          export const Project = dummyEntity;
-          export const Article = dummyEntity;
-          export const Comment = dummyEntity;
-          export const Category = dummyEntity;
-          export const Tag = dummyEntity;
-          export const Subscriber = dummyEntity;
-          export const Newsletter = dummyEntity;
+          export const __esModule = true;
         `;
       }
       return null;
