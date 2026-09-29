@@ -1,0 +1,82 @@
+{
+  "name": "EmailFollowUp",
+  "type": "object",
+  "properties": {
+    "recipient_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the recipient"
+    },
+    "recipient_name": {
+      "type": "string",
+      "description": "Name of the recipient"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Email subject line"
+    },
+    "body": {
+      "type": "string",
+      "description": "Email body content"
+    },
+    "template": {
+      "type": "string",
+      "description": "Template used for the email"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "scheduled",
+        "sent",
+        "failed"
+      ],
+      "default": "draft",
+      "description": "Email status"
+    },
+    "send_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the email was/will be sent"
+    },
+    "sent_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Actual send timestamp"
+    },
+    "error_message": {
+      "type": "string",
+      "description": "Error details if sending failed"
+    },
+    "related_contact_id": {
+      "type": "string",
+      "description": "ID of related contact/lead"
+    },
+    "contact_source": {
+      "type": "string",
+      "enum": [
+        "lead",
+        "subscriber",
+        "custom"
+      ],
+      "description": "Source of the contact"
+    }
+  },
+  "required": [
+    "recipient_email",
+    "subject",
+    "body"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

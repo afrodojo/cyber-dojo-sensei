@@ -1,0 +1,96 @@
+{
+  "name": "LeadReport",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Report title"
+    },
+    "period": {
+      "type": "string",
+      "enum": [
+        "weekly",
+        "monthly"
+      ],
+      "description": "Report period"
+    },
+    "template": {
+      "type": "string",
+      "enum": [
+        "executive_summary",
+        "detailed_analysis",
+        "trend_report"
+      ],
+      "description": "Report template type"
+    },
+    "period_start": {
+      "type": "string",
+      "format": "date",
+      "description": "Start date of the report period"
+    },
+    "period_end": {
+      "type": "string",
+      "format": "date",
+      "description": "End date of the report period"
+    },
+    "total_leads": {
+      "type": "number",
+      "description": "Total leads in period"
+    },
+    "avg_score": {
+      "type": "number",
+      "description": "Average lead score"
+    },
+    "suggestions_accepted": {
+      "type": "number",
+      "description": "Number of AI suggestions accepted"
+    },
+    "suggestions_total": {
+      "type": "number",
+      "description": "Total AI suggestions generated"
+    },
+    "report_content": {
+      "type": "string",
+      "description": "Full AI-generated report markdown content"
+    },
+    "key_insights": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Top key insights from the report"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "generating",
+        "ready",
+        "error"
+      ],
+      "default": "generating",
+      "description": "Report generation status"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional admin notes about this report",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "title",
+    "period",
+    "template"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

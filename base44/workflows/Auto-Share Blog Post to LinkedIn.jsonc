@@ -1,0 +1,37 @@
+{
+  "name": "Auto-Share Blog Post to LinkedIn",
+  "description": "Automatically shares a blog post to LinkedIn with a summary and link when its status changes to Published.",
+  "trigger": {
+    "condition": "${ ((.trigger.data.status == \"published\") and (.trigger.old_data.status != \"published\")) }",
+    "config": {
+      "trigger_type": "entity",
+      "events": [
+        "update"
+      ],
+      "entity_name": "BlogPost"
+    }
+  },
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "auto_share_blog_post_to_linkedin",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "run_function": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "autoPublishBlogToLinkedIn",
+            "args": {}
+          },
+          "then": "end"
+        }
+      }
+    ]
+  },
+  "x-base44-migrated-from-automation": {
+    "legacy_payload_function": "autoPublishBlogToLinkedIn"
+  }
+}

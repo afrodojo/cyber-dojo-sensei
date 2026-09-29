@@ -1,0 +1,68 @@
+{
+  "name": "LinkedInEngagement",
+  "type": "object",
+  "properties": {
+    "post_id": {
+      "type": "string",
+      "description": "SocialPost entity ID"
+    },
+    "post_urn": {
+      "type": "string",
+      "description": "LinkedIn post URN"
+    },
+    "comment_urn": {
+      "type": "string",
+      "description": "LinkedIn comment URN"
+    },
+    "commenter_name": {
+      "type": "string",
+      "description": "Name of the commenter"
+    },
+    "commenter_urn": {
+      "type": "string",
+      "description": "URN of the commenter"
+    },
+    "comment_text": {
+      "type": "string",
+      "description": "The original comment text"
+    },
+    "reply_text": {
+      "type": "string",
+      "description": "The AI-generated reply text"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "replied",
+        "failed",
+        "skipped"
+      ],
+      "default": "replied",
+      "description": "Engagement status"
+    },
+    "error_message": {
+      "type": "string",
+      "description": "Error message if failed"
+    },
+    "engaged_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When engagement occurred"
+    }
+  },
+  "required": [
+    "post_urn"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

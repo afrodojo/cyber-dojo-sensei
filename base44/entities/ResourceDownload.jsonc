@@ -1,0 +1,69 @@
+{
+  "name": "ResourceDownload",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of person downloading"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "title": {
+      "type": "string",
+      "description": "Job title"
+    },
+    "resource_name": {
+      "type": "string",
+      "description": "Name of downloaded resource"
+    },
+    "resource_type": {
+      "type": "string",
+      "enum": [
+        "checklist",
+        "whitepaper",
+        "guide",
+        "template",
+        "report"
+      ],
+      "description": "Type of resource"
+    },
+    "download_count": {
+      "type": "number",
+      "default": 1,
+      "description": "Number of times downloaded"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional notes or context about this download record",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "resource_name",
+    "resource_type"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {}
+  },
+  "x-base44-permissions": {
+    "list": "admin",
+    "get": "admin",
+    "create": "public",
+    "update": "admin",
+    "delete": "admin"
+  }
+}

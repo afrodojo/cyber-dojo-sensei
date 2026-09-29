@@ -1,0 +1,70 @@
+{
+  "name": "AnalyticsEvent",
+  "type": "object",
+  "properties": {
+    "event_name": {
+      "type": "string",
+      "description": "e.g. page_view, click, conversion, form_submit"
+    },
+    "page": {
+      "type": "string",
+      "description": "URL path + query string"
+    },
+    "session_id": {
+      "type": "string",
+      "description": "Anonymous session identifier"
+    },
+    "device": {
+      "type": "string",
+      "enum": [
+        "desktop",
+        "mobile",
+        "tablet"
+      ],
+      "description": "Device type"
+    },
+    "referrer": {
+      "type": "string",
+      "description": "HTTP referrer or 'direct'"
+    },
+    "utm_source": {
+      "type": "string"
+    },
+    "utm_medium": {
+      "type": "string"
+    },
+    "utm_campaign": {
+      "type": "string"
+    },
+    "utm_term": {
+      "type": "string"
+    },
+    "utm_content": {
+      "type": "string"
+    },
+    "properties": {
+      "type": "string",
+      "description": "JSON-stringified extra properties"
+    },
+    "timestamp": {
+      "type": "string",
+      "description": "ISO timestamp"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional human-readable note about this event",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "event_name"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {}
+  }
+}

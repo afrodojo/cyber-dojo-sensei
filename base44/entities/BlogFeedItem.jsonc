@@ -1,0 +1,66 @@
+{
+  "name": "BlogFeedItem",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Article title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Article excerpt/summary"
+    },
+    "url": {
+      "type": "string",
+      "description": "Article URL"
+    },
+    "author": {
+      "type": "string",
+      "description": "Article author"
+    },
+    "source": {
+      "type": "string",
+      "description": "Source publication name"
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "rss",
+        "own"
+      ],
+      "default": "rss",
+      "description": "Whether from external RSS or own blog"
+    },
+    "published_date": {
+      "type": "string",
+      "description": "Publication date"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Article tags"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Article image URL"
+    },
+    "feed_url": {
+      "type": "string",
+      "description": "RSS feed URL this came from"
+    }
+  },
+  "required": [
+    "title",
+    "url"
+  ],
+  "rls": {
+    "read": {},
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

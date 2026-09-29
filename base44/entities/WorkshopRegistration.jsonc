@@ -1,0 +1,60 @@
+{
+  "name": "WorkshopRegistration",
+  "type": "object",
+  "properties": {
+    "workshop_id": {
+      "type": "string",
+      "description": "ID of the Workshop"
+    },
+    "workshop_title": {
+      "type": "string"
+    },
+    "workshop_date": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string",
+      "description": "Registrant name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "organization": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "confirmed",
+        "waitlisted",
+        "cancelled"
+      ],
+      "default": "confirmed"
+    },
+    "calendar_added": {
+      "type": "boolean",
+      "default": false
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "workshop_id",
+    "workshop_title",
+    "name",
+    "email"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {}
+  }
+}

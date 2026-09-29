@@ -1,0 +1,96 @@
+{
+  "name": "ResearchFundingInquiry",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the person offering assistance"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Contact email"
+    },
+    "organization": {
+      "type": "string",
+      "description": "Organization, institution, or company"
+    },
+    "role": {
+      "type": "string",
+      "description": "Role or title of the person"
+    },
+    "assistance_type": {
+      "type": "string",
+      "enum": [
+        "financial-sponsorship",
+        "equipment-resources",
+        "mentorship-advisory",
+        "research-partnership",
+        "grant-sponsororship",
+        "other"
+      ],
+      "default": "financial-sponsorship",
+      "description": "Type of assistance offered"
+    },
+    "funding_amount": {
+      "type": "string",
+      "enum": [
+        "under-5k",
+        "5k-25k",
+        "25k-50k",
+        "50k-100k",
+        "100k-plus",
+        "non-monetary"
+      ],
+      "description": "Estimated funding or contribution level"
+    },
+    "research_focus": {
+      "type": "string",
+      "enum": [
+        "autonomous-defense",
+        "threat-intelligence",
+        "ai-security",
+        "quantum-cybersecurity",
+        "red-team-operations",
+        "general"
+      ],
+      "default": "general",
+      "description": "Research area the supporter is interested in"
+    },
+    "message": {
+      "type": "string",
+      "description": "Details about the assistance offered"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "reviewing",
+        "engaged",
+        "declined"
+      ],
+      "default": "new",
+      "description": "Status of the funding inquiry"
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "message"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {}
+  },
+  "x-base44-permissions": {
+    "list": "admin",
+    "get": "admin",
+    "create": "public",
+    "update": "admin",
+    "delete": "admin"
+  }
+}

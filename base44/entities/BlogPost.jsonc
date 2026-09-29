@@ -1,0 +1,103 @@
+{
+  "name": "BlogPost",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Blog post title"
+    },
+    "excerpt": {
+      "type": "string",
+      "description": "Short summary/excerpt"
+    },
+    "content": {
+      "type": "string",
+      "description": "Full blog post content in markdown"
+    },
+    "read_time": {
+      "type": "string",
+      "description": "Estimated read time"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "red-team",
+        "technical",
+        "leadership",
+        "threat-intelligence",
+        "architecture",
+        "business",
+        "hands-on-tutorials",
+        "writeups",
+        "coding-projects"
+      ],
+      "description": "Blog post category"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to feature this post"
+    },
+    "published": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the post is published"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "under-review",
+        "published"
+      ],
+      "default": "draft",
+      "description": "Editorial status of the blog post"
+    },
+    "scheduled_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Scheduled publish date for the blog post"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Blog post tags"
+    },
+    "meta_title": {
+      "type": "string",
+      "description": "Custom SEO meta title (defaults to post title if empty)"
+    },
+    "meta_description": {
+      "type": "string",
+      "description": "Custom SEO meta description (defaults to excerpt if empty)"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Cover image URL"
+    },
+    "attachment_url": {
+      "type": "string",
+      "description": "Downloadable file attachment URL (PDF or Word doc)"
+    },
+    "attachment_name": {
+      "type": "string",
+      "description": "Original file name of the attachment"
+    }
+  },
+  "required": [
+    "title",
+    "excerpt",
+    "content",
+    "category"
+  ],
+  "rls": {
+    "read": {},
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

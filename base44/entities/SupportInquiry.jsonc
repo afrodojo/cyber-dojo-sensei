@@ -1,0 +1,83 @@
+{
+  "name": "SupportInquiry",
+  "type": "object",
+  "properties": {
+    "email_id": {
+      "type": "string",
+      "description": "Gmail message ID"
+    },
+    "from": {
+      "type": "string",
+      "description": "Sender email address"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Email subject"
+    },
+    "body": {
+      "type": "string",
+      "description": "Email body/content"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "bug",
+        "feature-request",
+        "billing",
+        "account",
+        "general-question",
+        "technical-support",
+        "other"
+      ],
+      "description": "Categorized inquiry type"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "urgent"
+      ],
+      "description": "Priority level based on content"
+    },
+    "summary": {
+      "type": "string",
+      "description": "AI-generated summary of the inquiry"
+    },
+    "received_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the email was received"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "in-progress",
+        "resolved"
+      ],
+      "default": "new",
+      "description": "Support ticket status"
+    }
+  },
+  "required": [
+    "email_id",
+    "from",
+    "subject",
+    "body",
+    "category"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

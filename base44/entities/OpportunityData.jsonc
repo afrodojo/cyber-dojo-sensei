@@ -1,0 +1,96 @@
+{
+  "name": "OpportunityData",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "contracting-public",
+        "contracting-private",
+        "rd-ask",
+        "local-need",
+        "search-trend"
+      ],
+      "description": "Type of opportunity or data"
+    },
+    "title": {
+      "type": "string",
+      "description": "Title of the opportunity or trend"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description"
+    },
+    "agency_name": {
+      "type": "string",
+      "description": "Agency name if applicable"
+    },
+    "deadline": {
+      "type": "string",
+      "format": "date",
+      "description": "Deadline for opportunity"
+    },
+    "search_volume": {
+      "type": "number",
+      "description": "Search volume for trends"
+    },
+    "relevance_score": {
+      "type": "number",
+      "description": "1-100 score for relevance to Asaad's services"
+    },
+    "source": {
+      "type": "string",
+      "description": "Where this opportunity came from"
+    },
+    "suggested_content": {
+      "type": "string",
+      "description": "Suggested content to add to website"
+    },
+    "pages_to_update": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Which pages should be updated"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "reviewed",
+        "implemented",
+        "dismissed"
+      ],
+      "default": "new",
+      "description": "Status of the opportunity"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "urgent"
+      ],
+      "default": "medium",
+      "description": "Priority level"
+    }
+  },
+  "required": [
+    "type",
+    "title",
+    "description"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

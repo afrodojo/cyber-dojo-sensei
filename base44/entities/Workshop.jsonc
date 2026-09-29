@@ -1,0 +1,100 @@
+{
+  "name": "Workshop",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Workshop title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Full description"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of workshop"
+    },
+    "start_time": {
+      "type": "string",
+      "description": "Start time (e.g. 10:00 AM ET)"
+    },
+    "end_time": {
+      "type": "string",
+      "description": "End time (e.g. 12:00 PM ET)"
+    },
+    "location": {
+      "type": "string",
+      "description": "Physical address or 'Online'"
+    },
+    "meeting_link": {
+      "type": "string",
+      "description": "Zoom/Meet link if virtual"
+    },
+    "max_attendees": {
+      "type": "number",
+      "description": "Max seats"
+    },
+    "registration_count": {
+      "type": "number",
+      "default": 0
+    },
+    "price": {
+      "type": "number",
+      "default": 0,
+      "description": "Price in USD (0 = free)"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "cybersecurity",
+        "firearms",
+        "executive-protection",
+        "red-team",
+        "compliance"
+      ],
+      "description": "Workshop category"
+    },
+    "instructor": {
+      "type": "string",
+      "default": "Asaad Morman"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "upcoming",
+        "live",
+        "completed",
+        "cancelled"
+      ],
+      "default": "upcoming"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "image_url": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "date",
+    "start_time"
+  ],
+  "rls": {
+    "read": {},
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

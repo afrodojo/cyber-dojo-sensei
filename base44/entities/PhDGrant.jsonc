@@ -1,0 +1,79 @@
+{
+  "name": "PhDGrant",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Grant name/title"
+    },
+    "provider": {
+      "type": "string",
+      "description": "Sponsoring agency or organization"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Funding amount in USD"
+    },
+    "deadline": {
+      "type": "string",
+      "format": "date",
+      "description": "Application deadline date"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed grant description"
+    },
+    "eligibility": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Eligibility criteria list"
+    },
+    "application_url": {
+      "type": "string",
+      "description": "Official application or source URL"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "cybersecurity",
+        "defense",
+        "research",
+        "entrepreneurship",
+        "stem",
+        "other"
+      ],
+      "description": "Grant category"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the grant is currently active"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "ai_agent",
+        "manual"
+      ],
+      "default": "ai_agent",
+      "description": "How the grant was discovered"
+    }
+  },
+  "required": [
+    "title",
+    "provider",
+    "amount",
+    "deadline",
+    "application_url"
+  ],
+  "rls": {
+    "read": {},
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

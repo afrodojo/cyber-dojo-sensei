@@ -1,0 +1,102 @@
+{
+  "name": "LeadScore",
+  "type": "object",
+  "properties": {
+    "lead_id": {
+      "type": "string",
+      "description": "ID of the Lead entity"
+    },
+    "lead_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Lead email address"
+    },
+    "overall_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Overall lead quality score (0-100)"
+    },
+    "engagement_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Score based on email engagement"
+    },
+    "briefing_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Score based on briefing outcomes"
+    },
+    "fit_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Score based on company fit and budget"
+    },
+    "email_opens": {
+      "type": "number",
+      "default": 0,
+      "description": "Total email opens"
+    },
+    "email_clicks": {
+      "type": "number",
+      "default": 0,
+      "description": "Total email clicks"
+    },
+    "email_replies": {
+      "type": "number",
+      "default": 0,
+      "description": "Total email replies"
+    },
+    "briefing_completed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether briefing was completed"
+    },
+    "briefing_outcome": {
+      "type": "string",
+      "enum": [
+        "not_completed",
+        "qualified",
+        "next_steps",
+        "proposal",
+        "won",
+        "lost"
+      ],
+      "default": "not_completed",
+      "description": "Outcome of executive briefing"
+    },
+    "last_scored": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the score was last calculated"
+    },
+    "scoring_notes": {
+      "type": "string",
+      "description": "Notes about scoring factors"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional admin notes about this lead score",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "lead_id",
+    "lead_email"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

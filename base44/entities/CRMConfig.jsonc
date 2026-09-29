@@ -1,0 +1,69 @@
+{
+  "name": "CRMConfig",
+  "type": "object",
+  "properties": {
+    "crm_system": {
+      "type": "string",
+      "enum": [
+        "hubspot",
+        "salesforce"
+      ],
+      "description": "CRM system"
+    },
+    "is_connected": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether CRM is connected"
+    },
+    "last_sync": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last sync"
+    },
+    "auto_sync_enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Enable automatic syncing"
+    },
+    "sync_interval_minutes": {
+      "type": "number",
+      "default": 60,
+      "description": "Interval between syncs in minutes"
+    },
+    "push_email_metrics": {
+      "type": "boolean",
+      "default": true,
+      "description": "Push email engagement metrics to CRM"
+    },
+    "push_briefing_outcomes": {
+      "type": "boolean",
+      "default": true,
+      "description": "Push briefing outcomes to CRM"
+    },
+    "sync_errors_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of sync errors"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional notes about this CRM configuration",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "crm_system"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

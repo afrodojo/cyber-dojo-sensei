@@ -1,0 +1,107 @@
+{
+  "name": "CyberBulletin",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Bulletin title"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Short AI-generated summary (2-3 sentences)"
+    },
+    "content": {
+      "type": "string",
+      "description": "Full bulletin content in markdown"
+    },
+    "sector": {
+      "type": "string",
+      "enum": [
+        "general",
+        "education",
+        "finance",
+        "healthcare",
+        "government",
+        "defense",
+        "physical-security",
+        "critical-infrastructure"
+      ],
+      "description": "Target sector"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "advisory",
+        "bulletin",
+        "best-practice",
+        "threat-alert",
+        "guidance",
+        "training"
+      ],
+      "description": "Type of bulletin"
+    },
+    "threat_level": {
+      "type": "string",
+      "enum": [
+        "info",
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "default": "info",
+      "description": "Severity/urgency level"
+    },
+    "source": {
+      "type": "string",
+      "description": "Issuing authority (e.g., CISA, FBI, NSA)"
+    },
+    "source_url": {
+      "type": "string",
+      "description": "Link to original source"
+    },
+    "published_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of original publication"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Related tags"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Pin to top of page"
+    },
+    "is_published": {
+      "type": "boolean",
+      "default": true,
+      "description": "Visible to public"
+    },
+    "key_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Recommended action items"
+    }
+  },
+  "required": [
+    "title",
+    "summary",
+    "sector",
+    "category"
+  ],
+  "rls": {
+    "read": {},
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

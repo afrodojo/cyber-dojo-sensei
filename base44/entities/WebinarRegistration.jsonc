@@ -1,0 +1,66 @@
+{
+  "name": "WebinarRegistration",
+  "type": "object",
+  "properties": {
+    "webinar_id": {
+      "type": "string",
+      "description": "ID of the webinar"
+    },
+    "name": {
+      "type": "string",
+      "description": "Attendee name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Attendee email"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "title": {
+      "type": "string",
+      "description": "Job title"
+    },
+    "questions": {
+      "type": "string",
+      "description": "Questions for the webinar"
+    },
+    "marketing_consent": {
+      "type": "boolean",
+      "default": false,
+      "description": "Consent to receive marketing emails"
+    },
+    "attended": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether they attended the webinar"
+    },
+    "description": {
+      "type": "string",
+      "description": "Admin notes or context about this registration",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "webinar_id",
+    "name",
+    "email"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {}
+  },
+  "x-base44-permissions": {
+    "list": "admin",
+    "get": "admin",
+    "create": "public",
+    "update": "admin",
+    "delete": "admin"
+  }
+}

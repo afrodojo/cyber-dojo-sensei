@@ -1,0 +1,154 @@
+{
+  "name": "CaseStudy",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Case study title"
+    },
+    "client": {
+      "type": "string",
+      "description": "Client name (can be anonymized)"
+    },
+    "industry": {
+      "type": "string",
+      "enum": [
+        "defense",
+        "healthcare",
+        "finance",
+        "government",
+        "education",
+        "critical-infrastructure",
+        "private-sector",
+        "other"
+      ],
+      "description": "Client industry"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "red-team",
+        "penetration-testing",
+        "compliance",
+        "incident-response",
+        "security-architecture",
+        "physical-security"
+      ],
+      "description": "Engagement type"
+    },
+    "challenge": {
+      "type": "string",
+      "description": "The security challenge or problem"
+    },
+    "solution": {
+      "type": "string",
+      "description": "How the challenge was addressed"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Key results and achievements"
+    },
+    "duration": {
+      "type": "string",
+      "description": "Project duration"
+    },
+    "vulnerabilities_found": {
+      "type": "number",
+      "description": "Total number of vulnerabilities found"
+    },
+    "critical_vulns": {
+      "type": "number",
+      "default": 0,
+      "description": "Critical severity vulnerabilities"
+    },
+    "high_vulns": {
+      "type": "number",
+      "default": 0,
+      "description": "High severity vulnerabilities"
+    },
+    "medium_vulns": {
+      "type": "number",
+      "default": 0,
+      "description": "Medium severity vulnerabilities"
+    },
+    "low_vulns": {
+      "type": "number",
+      "default": 0,
+      "description": "Low severity vulnerabilities"
+    },
+    "vuln_highlights": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Notable specific vulnerabilities found"
+    },
+    "attack_vectors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Attack vectors exploited"
+    },
+    "risk_reduction": {
+      "type": "string",
+      "description": "Risk reduction percentage (e.g. 87%)"
+    },
+    "risk_reduction_number": {
+      "type": "number",
+      "description": "Numeric risk reduction % for sorting/charting"
+    },
+    "potential_savings": {
+      "type": "string",
+      "description": "Potential cost savings avoided"
+    },
+    "tools_used": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tools/frameworks used"
+    },
+    "testimonial": {
+      "type": "string",
+      "description": "Client quote (optional)"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Cover image URL"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Feature on public site"
+    },
+    "published": {
+      "type": "boolean",
+      "default": false,
+      "description": "Visible on public site"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional admin notes or additional context about this case study",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "title",
+    "client",
+    "challenge",
+    "solution",
+    "category"
+  ],
+  "rls": {
+    "read": {},
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

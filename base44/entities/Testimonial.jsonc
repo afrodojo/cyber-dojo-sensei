@@ -1,0 +1,75 @@
+{
+  "name": "Testimonial",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full name of the person giving the testimonial",
+      "maxLength": 120
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Contact email of the reviewer (used for the thank-you email workflow)"
+    },
+    "title": {
+      "type": "string",
+      "description": "Job title / role of the person",
+      "maxLength": 120
+    },
+    "company": {
+      "type": "string",
+      "description": "Company or organization",
+      "maxLength": 120
+    },
+    "relationship": {
+      "type": "string",
+      "description": "Relationship to Asaad (e.g., Colleague, Manager)",
+      "maxLength": 120
+    },
+    "user_type": {
+      "type": "string",
+      "enum": [
+        "client-employer",
+        "career-seeker",
+        "educational-institution"
+      ],
+      "description": "Reviewer segment \u2014 drives the thank-you email variant and the sector tag shown on the card"
+    },
+    "text": {
+      "type": "string",
+      "description": "The content of the testimonial",
+      "maxLength": 1000
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Star rating from 1 to 5"
+    },
+    "is_approved": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the testimonial has been approved for public display"
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "title",
+    "text",
+    "rating",
+    "user_type"
+  ],
+  "rls": {
+    "read": {},
+    "write": {}
+  },
+  "x-base44-permissions": {
+    "list": "public",
+    "get": "public",
+    "create": "public",
+    "update": "admin",
+    "delete": "admin"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "name": "Course",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Course title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short course description"
+    },
+    "syllabus": {
+      "type": "string",
+      "description": "Detailed syllabus/overview"
+    },
+    "duration": {
+      "type": "string",
+      "description": "Course duration (e.g. 5 hours)"
+    },
+    "format": {
+      "type": "string",
+      "description": "Delivery format (In-Person, Online, Hybrid)"
+    },
+    "price": {
+      "type": "number",
+      "description": "Course price in USD"
+    },
+    "price_label": {
+      "type": "string",
+      "description": "Custom price label (e.g. $75/hour)"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Firearms",
+        "Certification",
+        "Training"
+      ],
+      "description": "Course category"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Course image URL"
+    },
+    "registration_url": {
+      "type": "string",
+      "description": "External registration URL"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether course is visible publicly"
+    },
+    "display_order": {
+      "type": "number",
+      "default": 0,
+      "description": "Sort order for display"
+    }
+  },
+  "required": [
+    "title",
+    "price",
+    "category"
+  ],
+  "rls": {
+    "read": {},
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "ClientLogo",
+  "type": "object",
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "description": "Name of the client company"
+    },
+    "logo_url": {
+      "type": "string",
+      "description": "Uploaded logo image URL"
+    },
+    "website_url": {
+      "type": "string",
+      "description": "Optional company website link"
+    },
+    "display_order": {
+      "type": "number",
+      "default": 0,
+      "description": "Sort order for display"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Show on public portfolio"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional notes about this client relationship",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "company_name",
+    "logo_url"
+  ],
+  "rls": {
+    "read": {},
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

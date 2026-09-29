@@ -1,0 +1,63 @@
+{
+  "name": "Conference",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Conference name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Conference description"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Start date"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date",
+      "description": "End date"
+    },
+    "location": {
+      "type": "string",
+      "description": "City, State/Country"
+    },
+    "virtual": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether virtual/online"
+    },
+    "url": {
+      "type": "string",
+      "description": "Conference website URL"
+    },
+    "organizer": {
+      "type": "string",
+      "description": "Organizing entity"
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Categories (red-team, blue-team, CTF, etc.)"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Conference logo/image URL"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "read": {},
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

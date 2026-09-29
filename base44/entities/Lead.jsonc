@@ -1,0 +1,137 @@
+{
+  "name": "Lead",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Contact name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Contact email"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "title": {
+      "type": "string",
+      "description": "Job title"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number"
+    },
+    "message": {
+      "type": "string",
+      "description": "Inquiry message"
+    },
+    "service_interest": {
+      "type": "string",
+      "enum": [
+        "red-team",
+        "penetration-testing",
+        "security-consulting",
+        "training",
+        "speaking",
+        "other"
+      ],
+      "description": "Primary service of interest"
+    },
+    "industry": {
+      "type": "string",
+      "enum": [
+        "defense",
+        "healthcare",
+        "finance",
+        "government",
+        "education",
+        "critical-infrastructure",
+        "technology",
+        "energy",
+        "retail",
+        "manufacturing",
+        "private-sector",
+        "other"
+      ],
+      "default": "other",
+      "description": "Industry or sector the lead belongs to"
+    },
+    "audience_type": {
+      "type": "string",
+      "enum": [
+        "employer",
+        "career-seeker",
+        "educator",
+        "general-inquirer"
+      ],
+      "default": "general-inquirer",
+      "description": "Audience segment the lead belongs to"
+    },
+    "budget_range": {
+      "type": "string",
+      "enum": [
+        "under-25k",
+        "25k-50k",
+        "50k-100k",
+        "100k-250k",
+        "250k-plus"
+      ],
+      "description": "Estimated budget range"
+    },
+    "timeline": {
+      "type": "string",
+      "enum": [
+        "immediate",
+        "1-3-months",
+        "3-6-months",
+        "6-12-months",
+        "future"
+      ],
+      "description": "Project timeline"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "contacted",
+        "qualified",
+        "proposal-sent",
+        "closed-won",
+        "closed-lost"
+      ],
+      "default": "new",
+      "description": "Lead status"
+    },
+    "score": {
+      "type": "number",
+      "description": "Calculated lead score for prioritization"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional admin notes or additional context about this lead",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "message"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {}
+  },
+  "x-base44-permissions": {
+    "list": "admin",
+    "get": "admin",
+    "create": "public",
+    "update": "admin",
+    "delete": "admin"
+  }
+}

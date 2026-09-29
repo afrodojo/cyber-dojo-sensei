@@ -1,0 +1,80 @@
+{
+  "name": "CRMFieldMapping",
+  "type": "object",
+  "properties": {
+    "crm_system": {
+      "type": "string",
+      "enum": [
+        "hubspot",
+        "salesforce"
+      ],
+      "description": "CRM system (HubSpot or Salesforce)"
+    },
+    "app_entity": {
+      "type": "string",
+      "enum": [
+        "Lead",
+        "EmailFollowUp",
+        "ExecutiveBriefing"
+      ],
+      "description": "App entity to map from"
+    },
+    "app_field": {
+      "type": "string",
+      "description": "Field name in the app entity"
+    },
+    "crm_field": {
+      "type": "string",
+      "description": "Field name in the CRM system"
+    },
+    "field_type": {
+      "type": "string",
+      "enum": [
+        "text",
+        "number",
+        "date",
+        "boolean",
+        "select"
+      ],
+      "description": "Field data type"
+    },
+    "direction": {
+      "type": "string",
+      "enum": [
+        "push",
+        "pull",
+        "bidirectional"
+      ],
+      "default": "bidirectional",
+      "description": "Sync direction"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this mapping is active"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional notes about this field mapping",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "crm_system",
+    "app_entity",
+    "app_field",
+    "crm_field"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

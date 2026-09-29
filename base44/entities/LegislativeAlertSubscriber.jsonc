@@ -1,0 +1,62 @@
+{
+  "name": "LegislativeAlertSubscriber",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Subscriber email"
+    },
+    "name": {
+      "type": "string",
+      "description": "Subscriber name"
+    },
+    "interests": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "cybersecurity",
+          "2a_laws",
+          "both"
+        ]
+      },
+      "description": "Topics of interest",
+      "default": [
+        "both"
+      ]
+    },
+    "states": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "US states to monitor (empty = national)"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "last_sent": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last email sent timestamp"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional notes about this subscriber",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "email"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {}
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "name": "Referral",
+  "type": "object",
+  "properties": {
+    "referrer_name": {
+      "type": "string",
+      "description": "Name of person making referral"
+    },
+    "referrer_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email of referrer"
+    },
+    "referrer_company": {
+      "type": "string",
+      "description": "Referrer's company"
+    },
+    "referred_name": {
+      "type": "string",
+      "description": "Name of referred prospect"
+    },
+    "referred_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email of referred prospect"
+    },
+    "referred_company": {
+      "type": "string",
+      "description": "Referred prospect's company"
+    },
+    "relationship": {
+      "type": "string",
+      "description": "How referrer knows the prospect"
+    },
+    "services_needed": {
+      "type": "string",
+      "description": "What services the prospect needs"
+    },
+    "urgency": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "urgent"
+      ],
+      "default": "medium",
+      "description": "Urgency of the referral"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes about the referral"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "contacted",
+        "meeting-scheduled",
+        "proposal-sent",
+        "closed-won",
+        "closed-lost"
+      ],
+      "default": "new",
+      "description": "Referral status"
+    },
+    "referral_fee_paid": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether referral fee has been paid"
+    }
+  },
+  "required": [
+    "referrer_name",
+    "referrer_email",
+    "referred_name",
+    "referred_email"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {}
+  },
+  "x-base44-permissions": {
+    "list": "admin",
+    "get": "admin",
+    "create": "public",
+    "update": "admin",
+    "delete": "admin"
+  }
+}

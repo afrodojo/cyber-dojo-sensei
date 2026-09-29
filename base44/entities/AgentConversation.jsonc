@@ -1,0 +1,104 @@
+{
+  "name": "AgentConversation",
+  "type": "object",
+  "properties": {
+    "agent_name": {
+      "type": "string",
+      "description": "Name of the agent"
+    },
+    "user_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email of the user"
+    },
+    "title": {
+      "type": "string",
+      "description": "Conversation title"
+    },
+    "messages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "user",
+              "agent"
+            ]
+          },
+          "content": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          },
+          "file_urls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rating": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "rating_feedback": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Array of messages in the conversation"
+    },
+    "total_messages": {
+      "type": "number",
+      "default": 0,
+      "description": "Total message count"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "archived",
+        "resolved"
+      ],
+      "default": "active",
+      "description": "Conversation status"
+    },
+    "average_rating": {
+      "type": "number",
+      "description": "Average rating of agent responses"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags for categorizing conversations"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional notes or context about this conversation",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "agent_name"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

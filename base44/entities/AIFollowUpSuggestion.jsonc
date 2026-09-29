@@ -1,0 +1,98 @@
+{
+  "name": "AIFollowUpSuggestion",
+  "type": "object",
+  "properties": {
+    "lead_id": {
+      "type": "string",
+      "description": "ID of the Lead entity"
+    },
+    "lead_name": {
+      "type": "string",
+      "description": "Lead name"
+    },
+    "lead_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Lead email"
+    },
+    "suggestion_type": {
+      "type": "string",
+      "enum": [
+        "email_template",
+        "call_strategy",
+        "content_recommendation",
+        "next_action",
+        "timing"
+      ],
+      "description": "Type of suggestion"
+    },
+    "suggestion_title": {
+      "type": "string",
+      "description": "Title of the suggestion"
+    },
+    "suggestion_content": {
+      "type": "string",
+      "description": "Detailed suggestion or template content"
+    },
+    "reasoning": {
+      "type": "string",
+      "description": "Why this suggestion was made"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Confidence level of suggestion (0-100)"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "accepted",
+        "rejected",
+        "implemented"
+      ],
+      "default": "pending",
+      "description": "Status of the suggestion"
+    },
+    "trigger_event": {
+      "type": "string",
+      "enum": [
+        "email_open",
+        "email_click",
+        "briefing_completed",
+        "lead_qualified",
+        "lead_scored"
+      ],
+      "description": "What triggered this suggestion"
+    },
+    "context_data": {
+      "type": "string",
+      "description": "JSON-stringified context data used to generate suggestion"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional admin notes about this suggestion",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "lead_id",
+    "lead_email",
+    "suggestion_type",
+    "suggestion_title",
+    "suggestion_content"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "name": "SecurityAssessment",
+  "type": "object",
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "contact_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Contact email"
+    },
+    "contact_name": {
+      "type": "string",
+      "description": "Contact person name"
+    },
+    "industry": {
+      "type": "string",
+      "description": "Industry sector"
+    },
+    "employee_count": {
+      "type": "string",
+      "enum": [
+        "1-50",
+        "51-200",
+        "201-500",
+        "501-1000",
+        "1000+"
+      ],
+      "description": "Number of employees"
+    },
+    "security_budget": {
+      "type": "string",
+      "enum": [
+        "under-50k",
+        "50k-100k",
+        "100k-250k",
+        "250k-500k",
+        "500k+"
+      ],
+      "description": "Annual security budget"
+    },
+    "current_security_tools": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Current security tools in use"
+    },
+    "biggest_concern": {
+      "type": "string",
+      "description": "Biggest security concern"
+    },
+    "last_assessment": {
+      "type": "string",
+      "enum": [
+        "never",
+        "1-year",
+        "2-years",
+        "3+ years"
+      ],
+      "description": "When last security assessment was done"
+    },
+    "compliance_requirements": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Compliance requirements (HIPAA, PCI, etc)"
+    },
+    "calculated_score": {
+      "type": "number",
+      "description": "Calculated security risk score"
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Generated recommendations"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "completed",
+        "follow-up-needed",
+        "converted"
+      ],
+      "default": "completed",
+      "description": "Assessment status"
+    },
+    "description": {
+      "type": "string",
+      "description": "Additional context or admin notes about this assessment",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "company_name",
+    "contact_email",
+    "contact_name"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {}
+  },
+  "x-base44-permissions": {
+    "list": "admin",
+    "get": "admin",
+    "create": "public",
+    "update": "admin",
+    "delete": "admin"
+  }
+}

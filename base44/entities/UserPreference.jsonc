@@ -1,0 +1,114 @@
+{
+  "name": "UserPreference",
+  "type": "object",
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "description": "Anonymous or authenticated session identifier"
+    },
+    "user_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Optional authenticated user email"
+    },
+    "interests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Inferred interests (e.g., 'red-team', 'penetration-testing', 'compliance')"
+    },
+    "interest_scores": {
+      "type": "string",
+      "description": "JSON object mapping interests to confidence scores (0-1)"
+    },
+    "pages_visited": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Pages the user has visited"
+    },
+    "time_on_pages": {
+      "type": "string",
+      "description": "JSON object mapping pages to total time spent (milliseconds)"
+    },
+    "content_interactions": {
+      "type": "string",
+      "description": "JSON object tracking clicks on blog posts, case studies, services"
+    },
+    "preferred_categories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Preferred content categories based on behavior"
+    },
+    "personalization_enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether personalization is enabled for this user"
+    },
+    "last_activity": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last user activity"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional admin notes about this user preference record",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "session_id"
+  ],
+  "rls": {
+    "create": true,
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "data.session_id": "{{session.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "data.session_id": "{{session.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "data.session_id": "{{session.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

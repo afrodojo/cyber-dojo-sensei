@@ -1,0 +1,42 @@
+{
+  "name": "SecurityMetric",
+  "type": "object",
+  "properties": {
+    "metric_name": {
+      "type": "string",
+      "description": "Name of the metric (e.g., 'vulnerabilities_found_this_year')"
+    },
+    "current_value": {
+      "type": "number",
+      "description": "Current value of the metric"
+    },
+    "target_value": {
+      "type": "number",
+      "description": "Target value for the metric"
+    },
+    "unit": {
+      "type": "string",
+      "description": "Unit of measurement (e.g., '%', 'count', '$')"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of what this metric represents"
+    },
+    "display_order": {
+      "type": "number",
+      "description": "Order to display metrics"
+    }
+  },
+  "required": [
+    "metric_name",
+    "current_value"
+  ],
+  "rls": {
+    "read": {},
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

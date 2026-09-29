@@ -1,0 +1,71 @@
+{
+  "name": "ThreatIntelligence",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Threat alert title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the threat"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "description": "Threat severity level"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "malware",
+        "ransomware",
+        "phishing",
+        "vulnerability",
+        "apt",
+        "data-breach"
+      ],
+      "description": "Type of threat"
+    },
+    "source": {
+      "type": "string",
+      "description": "Source of the intelligence"
+    },
+    "published_date": {
+      "type": "string",
+      "format": "date",
+      "description": "When the threat was first reported"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this threat is currently active"
+    },
+    "mitigation_steps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Recommended mitigation steps"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "severity",
+    "category"
+  ],
+  "rls": {
+    "read": {},
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

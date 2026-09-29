@@ -1,0 +1,41 @@
+{
+  "name": "Subscriber",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Subscriber email address"
+    },
+    "name": {
+      "type": "string",
+      "description": "Optional subscriber name"
+    },
+    "source": {
+      "type": "string",
+      "description": "Where they subscribed from (footer, blog, etc.)",
+      "default": "footer"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the subscription is active"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional notes about this subscriber",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "email"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {}
+  }
+}

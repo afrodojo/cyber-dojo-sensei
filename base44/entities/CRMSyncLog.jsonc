@@ -1,0 +1,89 @@
+{
+  "name": "CRMSyncLog",
+  "type": "object",
+  "properties": {
+    "crm_system": {
+      "type": "string",
+      "enum": [
+        "hubspot",
+        "salesforce"
+      ],
+      "description": "CRM system"
+    },
+    "sync_type": {
+      "type": "string",
+      "enum": [
+        "lead_sync",
+        "email_metrics",
+        "briefing_outcome",
+        "field_mapping"
+      ],
+      "description": "Type of sync operation"
+    },
+    "entity_type": {
+      "type": "string",
+      "enum": [
+        "Lead",
+        "EmailFollowUp",
+        "ExecutiveBriefing"
+      ],
+      "description": "Entity type being synced"
+    },
+    "entity_id": {
+      "type": "string",
+      "description": "ID of the app entity"
+    },
+    "crm_record_id": {
+      "type": "string",
+      "description": "ID of the CRM record"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "success",
+        "error",
+        "partial"
+      ],
+      "description": "Sync status"
+    },
+    "message": {
+      "type": "string",
+      "description": "Detailed message or error details"
+    },
+    "data_synced": {
+      "type": "string",
+      "description": "JSON-stringified data that was synced"
+    },
+    "error_details": {
+      "type": "string",
+      "description": "Detailed error information if sync failed"
+    },
+    "duration_ms": {
+      "type": "number",
+      "description": "Duration of sync operation in milliseconds"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional admin notes about this sync log entry",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "crm_system",
+    "sync_type",
+    "entity_type",
+    "status"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

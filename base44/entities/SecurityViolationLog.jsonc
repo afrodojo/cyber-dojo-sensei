@@ -1,0 +1,97 @@
+{
+  "name": "SecurityViolationLog",
+  "type": "object",
+  "properties": {
+    "violation_type": {
+      "type": "string",
+      "enum": [
+        "unauthorized_scraping",
+        "excessive_requests",
+        "bot_detection",
+        "policy_violation",
+        "data_exfiltration_attempt",
+        "suspicious_behavior",
+        "compliance_breach"
+      ],
+      "description": "Type of security violation detected"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "description": "Severity level of the violation"
+    },
+    "source_ip": {
+      "type": "string",
+      "description": "IP address of the violation source"
+    },
+    "user_agent": {
+      "type": "string",
+      "description": "User agent string detected"
+    },
+    "session_id": {
+      "type": "string",
+      "description": "Associated session ID"
+    },
+    "endpoint": {
+      "type": "string",
+      "description": "API endpoint or page targeted"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the violation"
+    },
+    "request_pattern": {
+      "type": "string",
+      "description": "JSON-stringified request pattern that triggered violation"
+    },
+    "action_taken": {
+      "type": "string",
+      "enum": [
+        "logged",
+        "rate_limited",
+        "blocked",
+        "flagged_for_review",
+        "quarantined"
+      ],
+      "default": "logged",
+      "description": "Action taken in response"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "investigating",
+        "resolved",
+        "false_positive"
+      ],
+      "default": "open",
+      "description": "Current status of violation"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Admin notes and investigation details"
+    }
+  },
+  "required": [
+    "violation_type",
+    "severity",
+    "description"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

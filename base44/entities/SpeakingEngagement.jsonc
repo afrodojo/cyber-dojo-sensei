@@ -1,0 +1,82 @@
+{
+  "name": "SpeakingEngagement",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Presentation title"
+    },
+    "event": {
+      "type": "string",
+      "description": "Event or conference name"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Event date"
+    },
+    "location": {
+      "type": "string",
+      "description": "Event location"
+    },
+    "audience_size": {
+      "type": "string",
+      "description": "Expected audience size"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the presentation"
+    },
+    "topics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Key topics covered"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "conference",
+        "workshop",
+        "keynote",
+        "executive-briefing",
+        "panel"
+      ],
+      "description": "Type of speaking engagement"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "upcoming",
+        "completed",
+        "cancelled"
+      ],
+      "default": "upcoming",
+      "description": "Status of the engagement"
+    },
+    "slides_url": {
+      "type": "string",
+      "description": "Link to presentation slides"
+    },
+    "recording_url": {
+      "type": "string",
+      "description": "Link to recording if available"
+    }
+  },
+  "required": [
+    "title",
+    "event",
+    "date",
+    "location",
+    "type"
+  ],
+  "rls": {
+    "read": {},
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

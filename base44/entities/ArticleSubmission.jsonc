@@ -1,0 +1,94 @@
+{
+  "name": "ArticleSubmission",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Article title"
+    },
+    "file_url": {
+      "type": "string",
+      "description": "Uploaded file URL (PDF or Word)"
+    },
+    "file_name": {
+      "type": "string",
+      "description": "Original file name"
+    },
+    "file_type": {
+      "type": "string",
+      "enum": [
+        "pdf",
+        "docx",
+        "doc"
+      ],
+      "description": "File type"
+    },
+    "extracted_content": {
+      "type": "string",
+      "description": "AI-extracted text content from the file"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "upload",
+        "agent"
+      ],
+      "default": "upload",
+      "description": "How the article was submitted"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "rejected",
+        "published"
+      ],
+      "default": "pending",
+      "description": "Review status"
+    },
+    "social_platforms": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "linkedin",
+          "twitter",
+          "instagram"
+        ]
+      },
+      "description": "Platforms to post to after approval"
+    },
+    "social_post_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs of generated SocialPost records"
+    },
+    "admin_notes": {
+      "type": "string",
+      "description": "Internal notes from the reviewer"
+    },
+    "scheduled_publish_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Optional scheduled publish date"
+    }
+  },
+  "required": [
+    "title"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

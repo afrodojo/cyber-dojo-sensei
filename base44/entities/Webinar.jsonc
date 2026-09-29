@@ -1,0 +1,77 @@
+{
+  "name": "Webinar",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Webinar title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Webinar description"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Webinar date"
+    },
+    "time": {
+      "type": "string",
+      "description": "Webinar time"
+    },
+    "duration": {
+      "type": "string",
+      "description": "Expected duration"
+    },
+    "topics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Topics to be covered"
+    },
+    "max_attendees": {
+      "type": "number",
+      "description": "Maximum number of attendees"
+    },
+    "registration_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Current registration count"
+    },
+    "meeting_link": {
+      "type": "string",
+      "description": "Meeting/webinar link"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "upcoming",
+        "live",
+        "completed",
+        "cancelled"
+      ],
+      "default": "upcoming",
+      "description": "Webinar status"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to feature this webinar"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "date",
+    "time"
+  ],
+  "rls": {
+    "read": {},
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

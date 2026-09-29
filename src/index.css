@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 225 30% 8%;
+    --foreground: 211 36% 84%;
+    --card: 225 19% 13%;
+    --card-foreground: 211 36% 84%;
+    --popover: 225 19% 13%;
+    --popover-foreground: 211 36% 84%;
+    --primary: 180 100% 50%;
+    --primary-foreground: 225 30% 8%;
+    --secondary: 225 19% 13%;
+    --secondary-foreground: 211 36% 84%;
+    --muted: 225 15% 10%;
+    --muted-foreground: 213 16% 49%;
+    --accent: 180 100% 50%;
+    --accent-foreground: 225 30% 8%;
+    --destructive: 340 100% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 180 50% 14%;
+    --input: 225 15% 12%;
+    --ring: 180 100% 50%;
+    --chart-1: 180 100% 50%;
+    --chart-2: 200 80% 60%;
+    --chart-3: 160 60% 45%;
+    --chart-4: 190 90% 55%;
+    --chart-5: 210 70% 50%;
+    --radius: 0.5rem;
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Montserrat', sans-serif;
+    --font-display: 'Montserrat', sans-serif;
+    --sidebar-background: 225 30% 8%;
+    --sidebar-foreground: 211 36% 84%;
+    --sidebar-primary: 180 100% 50%;
+    --sidebar-primary-foreground: 225 30% 8%;
+    --sidebar-accent: 225 19% 13%;
+    --sidebar-accent-foreground: 211 36% 84%;
+    --sidebar-border: 180 50% 14%;
+    --sidebar-ring: 180 100% 50%;
+  }
+
+  .dark {
+    --background: 225 30% 8%;
+    --foreground: 211 36% 84%;
+    --card: 225 19% 13%;
+    --card-foreground: 211 36% 84%;
+    --popover: 225 19% 13%;
+    --popover-foreground: 211 36% 84%;
+    --primary: 180 100% 50%;
+    --primary-foreground: 225 30% 8%;
+    --secondary: 225 19% 13%;
+    --secondary-foreground: 211 36% 84%;
+    --muted: 225 15% 10%;
+    --muted-foreground: 213 16% 49%;
+    --accent: 180 100% 50%;
+    --accent-foreground: 225 30% 8%;
+    --destructive: 340 100% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 180 50% 14%;
+    --input: 225 15% 12%;
+    --ring: 180 100% 50%;
+    --chart-1: 180 100% 50%;
+    --chart-2: 200 80% 60%;
+    --chart-3: 160 60% 45%;
+    --chart-4: 190 90% 55%;
+    --chart-5: 210 70% 50%;
+    --sidebar-background: 225 30% 8%;
+    --sidebar-foreground: 211 36% 84%;
+    --sidebar-primary: 180 100% 50%;
+    --sidebar-primary-foreground: 225 30% 8%;
+    --sidebar-accent: 225 19% 13%;
+    --sidebar-accent-foreground: 211 36% 84%;
+    --sidebar-border: 180 50% 14%;
+    --sidebar-ring: 180 100% 50%;
+  }
+
+  .daylight {
+    --background: 210 20% 96%;
+    --foreground: 225 30% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 225 30% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 225 30% 15%;
+    --primary: 190 100% 32%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 20% 92%;
+    --secondary-foreground: 225 30% 15%;
+    --muted: 210 20% 94%;
+    --muted-foreground: 215 16% 40%;
+    --accent: 190 100% 32%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 340 80% 45%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 190 30% 78%;
+    --input: 210 20% 90%;
+    --ring: 190 100% 32%;
+    --chart-1: 190 100% 32%;
+    --chart-2: 200 70% 45%;
+    --chart-3: 170 50% 35%;
+    --chart-4: 190 80% 40%;
+    --chart-5: 210 60% 40%;
+    --sidebar-background: 210 20% 96%;
+    --sidebar-foreground: 225 30% 15%;
+    --sidebar-primary: 190 100% 32%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 20% 92%;
+    --sidebar-accent-foreground: 225 30% 15%;
+    --sidebar-border: 190 30% 78%;
+    --sidebar-ring: 190 100% 32%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    background-image:
+      linear-gradient(rgba(0, 255, 255, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.025) 1px, transparent 1px),
+      radial-gradient(circle, rgba(0, 255, 255, 0.04) 1px, transparent 2px);
+    background-size: 50px 50px, 50px 50px, 50px 50px;
+    background-position: 0 0, 0 0, 25px 25px;
+  }
+
+  :root.daylight body {
+    background-image:
+      linear-gradient(rgba(0, 136, 163, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 136, 163, 0.04) 1px, transparent 1px),
+      radial-gradient(circle, rgba(0, 136, 163, 0.05) 1px, transparent 2px);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .nav-active {
+    color: hsl(var(--primary));
+    font-weight: 600;
+  }
+  .ninja-grid {
+    background-image:
+      linear-gradient(rgba(0, 255, 255, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.025) 1px, transparent 1px),
+      radial-gradient(circle, rgba(0, 255, 255, 0.04) 1px, transparent 2px);
+    background-size: 50px 50px, 50px 50px, 50px 50px;
+    background-position: 0 0, 0 0, 25px 25px;
+  }
+  .daylight .ninja-grid {
+    background-image:
+      linear-gradient(rgba(0, 136, 163, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 136, 163, 0.04) 1px, transparent 1px),
+      radial-gradient(circle, rgba(0, 136, 163, 0.05) 1px, transparent 2px);
+  }
+  .ninja-surface {
+    background-color: rgba(26, 29, 38, 0.85);
+  }
+  .daylight .ninja-surface {
+    background-color: rgba(255, 255, 255, 0.95);
+  }
+  .ninja-glow {
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.25);
+  }
+  .daylight .ninja-glow {
+    box-shadow: 0 0 12px rgba(0, 136, 163, 0.2);
+  }
+  .ninja-pulse-glow {
+    animation: ninja-pulse-glow 2s ease-in-out infinite;
+  }
+  .shuriken-clip {
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  }
+  .shuriken-clip-sm {
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  }
+  .shuriken-stroke {
+    box-shadow: inset 0 0 0 1px rgba(0, 255, 255, 0.4);
+  }
+  .daylight .shuriken-stroke {
+    box-shadow: inset 0 0 0 1px rgba(0, 136, 163, 0.4);
+  }
+  .logo-pulse {
+    animation: logo-pulse 2.5s ease-in-out infinite;
+  }
+  .logo-glow-wrap {
+    transition: transform 0.3s ease;
+  }
+  .logo-glow-wrap:hover {
+    transform: rotate(2deg);
+  }
+  .shuriken-glow {
+    filter: drop-shadow(0 0 3px rgba(0, 255, 255, 0.5));
+  }
+  .daylight .shuriken-glow {
+    filter: drop-shadow(0 0 3px rgba(0, 136, 163, 0.5));
+  }
+  .terminal-cursor {
+    animation: terminal-blink 0.8s step-end infinite;
+    color: hsl(var(--primary));
+    margin-left: 1px;
+  }
+}
+
+@keyframes ninja-pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(0, 255, 255, 0.4), 0 0 16px rgba(0, 255, 255, 0.15); }
+  50% { box-shadow: 0 0 16px rgba(0, 255, 255, 0.7), 0 0 32px rgba(0, 255, 255, 0.35); }
+}
+
+@keyframes logo-pulse {
+  0%, 100% { 
+    filter: drop-shadow(0 0 3px rgba(0, 255, 255, 0.4)) drop-shadow(0 0 6px rgba(0, 255, 255, 0.2));
+  }
+  50% { 
+    filter: drop-shadow(0 0 6px rgba(0, 255, 255, 0.7)) drop-shadow(0 0 12px rgba(0, 255, 255, 0.4));
+  }
+}
+
+@keyframes terminal-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+body.gate-active header {
+  display: none !important;
+}

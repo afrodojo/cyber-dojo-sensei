@@ -1,0 +1,80 @@
+{
+  "name": "Partner",
+  "type": "object",
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "description": "Partner company name"
+    },
+    "contact_name": {
+      "type": "string",
+      "description": "Primary contact name"
+    },
+    "contact_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Contact email"
+    },
+    "website": {
+      "type": "string",
+      "description": "Partner website"
+    },
+    "logo_url": {
+      "type": "string",
+      "description": "Partner logo URL"
+    },
+    "partnership_type": {
+      "type": "string",
+      "enum": [
+        "technology",
+        "consulting",
+        "reseller",
+        "referral",
+        "strategic"
+      ],
+      "description": "Type of partnership"
+    },
+    "specialties": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Partner specialties"
+    },
+    "geographic_focus": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Geographic areas they serve"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the partnership"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether partnership is active"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to feature this partner"
+    }
+  },
+  "required": [
+    "company_name",
+    "contact_name",
+    "contact_email",
+    "partnership_type"
+  ],
+  "rls": {
+    "read": {},
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
