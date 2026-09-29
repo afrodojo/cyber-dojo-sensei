@@ -7,25 +7,6 @@ function mockBase44BackendPlugin() {
 
   return {
     name: 'mock-base44-backend',
-    enforce: 'pre',
-    transform(code, id) {
-      // Intercept source files and rewrite named imports from Base44 paths into default imports
-      const hasBase44Import = base44Folders.some(folder => id.includes(`/src/${folder}/`));
-      
-      // Match import statements referencing base44 folders and convert them to default proxy imports
-      if (code.includes('/functions/') || code.includes('/entities/') || code.includes('/integrations/') || code.includes('/api/')) {
-        const transformedCode = code.replace(
-          /import\s+\{([^}]+)\}\s+from\s+['"]([^'"]*(?:functions|entities|integrations|api)[^'"]*)['"]/g,
-          (match, imports, source) => {
-            const vars = imports.split(',').map(i => i.trim().split(/\s+as\s+/)[0]);
-            const assignments = vars.map(v => `const ${v} = mockProxy;`).join(' ');
-            return `import mockProxy from '${source}'; ${assignments}`;
-          }
-        );
-        return { code: transformedCode, map: null };
-      }
-      return null;
-    },
     resolveId(source) {
       const isBase44Import = base44Folders.some(folder => 
         source.includes(`/${folder}/`) || 
@@ -42,15 +23,24 @@ function mockBase44BackendPlugin() {
       if (id.startsWith('\0virtual:')) {
         return `
           const mockFn = async () => ({ success: true, data: [] });
-          const dummyEntity = new Proxy(mockFn, {
+          
+          const universalProxy = new Proxy(mockFn, {
             get: (target, prop) => {
               if (prop === 'then') return undefined;
-              return mockFn;
-            }
+              if (prop === '__esModule') return true;
+              return universalProxy;
+            },
+            apply: async () => ({ success: true, data: [] })
           });
 
-          export default dummyEntity;
+          // Default export
+          export default universalProxy;
+
+          // Universal proxy fallback for named destructuring
           export const __esModule = true;
+          
+          // Fallback proxy handler proxying any named exports
+          module.exports = universalProxy;
         `;
       }
       return null;
@@ -63,6 +53,11 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+    },
+  },
+  build: {
+    commonjsOptions: {
+      transformMixedEsModules: true,
     },
   },
 });
