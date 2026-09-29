@@ -1,4 +1,4 @@
-﻿import { defineConfig } from 'vite';
+import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
@@ -22,22 +22,28 @@ function mockBase44BackendPlugin() {
     load(id) {
       if (id.startsWith('\0virtual:')) {
         return `
-          const createProxy = () => new Proxy(() => {}, {
+          const mockFn = async () => ({ success: true, data: [] });
+          const dummyEntity = new Proxy(mockFn, {
             get: (target, prop) => {
               if (prop === 'then') return undefined;
-              return createProxy();
-            },
-            apply: async () => ({ success: true, data: [] })
+              return mockFn;
+            }
           });
-          const mockObject = createProxy();
-          export default mockObject;
-          export const processArticleSubmission = mockObject;
-          export const ensureMasterAdmin = mockObject;
-          export const getGitHubCommits = mockObject;
-          export const BlogPost = mockObject;
-          export const ArticleSubmission = mockObject;
-          export const SocialPost = mockObject;
-          export const Core = mockObject;
+
+          export default dummyEntity;
+
+          // Export proxy for any destructuring / named imports
+          export const processArticleSubmission = mockFn;
+          export const ensureMasterAdmin = mockFn;
+          export const getGitHubCommits = mockFn;
+          export const submitTestimonial = mockFn;
+          export const BlogPost = dummyEntity;
+          export const ArticleSubmission = dummyEntity;
+          export const SocialPost = dummyEntity;
+          export const Core = dummyEntity;
+
+          // Fallback proxy handler for unhandled named exports
+          export const __esModule = true;
         `;
       }
       return null;
