@@ -33,12 +33,14 @@ function mockBase44BackendPlugin() {
           // Default export
           export default dummyEntity;
 
-          // Universal named exports list covering all project backend imports
+          // Functions
           export const processArticleSubmission = mockFn;
           export const ensureMasterAdmin = mockFn;
           export const getGitHubCommits = mockFn;
           export const submitTestimonial = mockFn;
+          export const subscribeNewsletter = mockFn;
           
+          // Entities & Modules
           export const Testimonial = dummyEntity;
           export const BlogPost = dummyEntity;
           export const ArticleSubmission = dummyEntity;
@@ -50,6 +52,8 @@ function mockBase44BackendPlugin() {
           export const Comment = dummyEntity;
           export const Category = dummyEntity;
           export const Tag = dummyEntity;
+          export const Subscriber = dummyEntity;
+          export const Newsletter = dummyEntity;
         `;
       }
       return null;
