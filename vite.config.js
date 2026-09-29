@@ -1,15 +1,13 @@
-import { defineConfig } from 'vite';
+﻿import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
-// Plugin to automatically mock missing Base44 backend services during build
 function mockBase44BackendPlugin() {
   const base44Folders = ['functions', 'entities', 'integrations', 'api'];
 
   return {
     name: 'mock-base44-backend',
     resolveId(source) {
-      // Check if import starts with /src/ or @/ followed by any known Base44 system folder
       const isBase44Import = base44Folders.some(folder => 
         source.includes(`/${folder}/`) || 
         source.startsWith(`@/${folder}/`) ||
@@ -23,18 +21,15 @@ function mockBase44BackendPlugin() {
     },
     load(id) {
       if (id.startsWith('\0virtual:')) {
-        // Return a flexible proxy that responds safely to any function or entity method call
         return `
           const createProxy = () => new Proxy(() => {}, {
             get: (target, prop) => {
-              if (prop === 'then') return undefined; // Avoid broken async/await promises
+              if (prop === 'then') return undefined;
               return createProxy();
             },
             apply: async () => ({ success: true, data: [] })
           });
-
           const mockObject = createProxy();
-
           export default mockObject;
           export const processArticleSubmission = mockObject;
           export const ensureMasterAdmin = mockObject;
