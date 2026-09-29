@@ -30,20 +30,26 @@ function mockBase44BackendPlugin() {
             }
           });
 
+          // Default export
           export default dummyEntity;
 
-          // Export proxy for any destructuring / named imports
+          // Universal named exports list covering all project backend imports
           export const processArticleSubmission = mockFn;
           export const ensureMasterAdmin = mockFn;
           export const getGitHubCommits = mockFn;
           export const submitTestimonial = mockFn;
+          
+          export const Testimonial = dummyEntity;
           export const BlogPost = dummyEntity;
           export const ArticleSubmission = dummyEntity;
           export const SocialPost = dummyEntity;
           export const Core = dummyEntity;
-
-          // Fallback proxy handler for unhandled named exports
-          export const __esModule = true;
+          export const User = dummyEntity;
+          export const Project = dummyEntity;
+          export const Article = dummyEntity;
+          export const Comment = dummyEntity;
+          export const Category = dummyEntity;
+          export const Tag = dummyEntity;
         `;
       }
       return null;
